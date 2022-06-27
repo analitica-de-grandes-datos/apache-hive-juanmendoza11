@@ -28,7 +28,7 @@ LOAD DATA LOCAL INPATH 'data.tsv' OVERWRITE INTO TABLE output;
 CREATE TABLE resultado AS 
         SELECT letra
         ,count(*)
-        FROM Text 
+        FROM output 
         GROUP BY letra;
         
 INSERT OVERWRITE DIRECTORY 'output'
