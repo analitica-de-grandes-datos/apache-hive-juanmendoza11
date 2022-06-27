@@ -25,12 +25,12 @@ CREATE TABLE output (
 LOAD DATA LOCAL INPATH 'data.tsv' OVERWRITE INTO TABLE output;
 
 
-CREATE TABLE resultado AS (
+CREATE TABLE resultado AS 
         SELECT letra
         ,count(*)
         FROM Text 
         GROUP BY letra;
-        )
+        
 INSERT OVERWRITE DIRECTORY 'output'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 SELECT * FROM resultado;
