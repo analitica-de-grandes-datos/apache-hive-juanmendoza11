@@ -13,4 +13,24 @@ Escriba el resultado a la carpeta `output` de directorio de trabajo.
 
         >>> Escriba su respuesta a partir de este punto <<<
 */
+DROP TABLE IF EXISTS output;
+DROP TABLE IF EXISTS data;
+CREATE TABLE output (
+    letra       string
+    ,fecha       string
+    ,valor       int
+) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
 
+
+LOAD DATA LOCAL INPATH 'data.tsv' OVERWRITE INTO TABLE output;
+
+
+CREATE TABLE resultado AS (
+        SELECT letra
+        ,count(*)
+        FROM Text 
+        GROUP BY letra;
+        )
+INSERT OVERWRITE DIRECTORY 'output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM resultado;
