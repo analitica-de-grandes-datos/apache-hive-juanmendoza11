@@ -27,9 +27,9 @@ LOAD DATA LOCAL INPATH 'data.tsv' OVERWRITE INTO TABLE output;
 
 CREATE TABLE resultado 
     AS 
-        SELECT letter, count(*) 
+        SELECT letra, count(*) 
         FROM output
-        GROUP BY letter;
+        GROUP BY letra;
 
 INSERT OVERWRITE DIRECTORY 'output'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
