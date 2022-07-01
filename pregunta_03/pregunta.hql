@@ -15,7 +15,7 @@ Escriba el resultado a la carpeta `output` de directorio de trabajo.
 */
 DROP TABLE IF EXISTS output;
 DROP TABLE IF EXISTS resultado;
-CREATE TABLE Text (
+CREATE TABLE output (
     letra   string,
     fecha   string,
     valor   int
