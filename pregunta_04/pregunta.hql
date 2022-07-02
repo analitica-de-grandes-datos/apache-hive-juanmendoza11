@@ -49,7 +49,7 @@ CREATE TABLE resultado
     AS 
         SELECT DISTINCT a.split
         FROM (
-            SELECT split(c5,':') AS split 
+            SELECT explode(c5) AS split 
             FROM tbl0
         ) AS a;
 
