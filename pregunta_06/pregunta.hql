@@ -45,4 +45,15 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
 /*
     >>> Escriba su respuesta a partir de este punto <<<
 */
+DROP TABLE IF EXISTS resultado;
+CREATE TABLE resultado 
+    AS 
+        SELECT UPPER(c5)
+        FROM tbl0 
+;
 
+INSERT OVERWRITE DIRECTORY 'output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+
+SELECT *
+FROM resultado;
