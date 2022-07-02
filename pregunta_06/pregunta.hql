@@ -49,7 +49,7 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
 DROP TABLE IF EXISTS resultado;
 CREATE TABLE resultado 
     AS 
-        SELECT UPPER(c5)
+        SELECT UPPER(CONCAT_WS(':',c5))
         FROM tbl0 
 ;
 
@@ -58,3 +58,4 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 
 SELECT *
 FROM resultado;
+
