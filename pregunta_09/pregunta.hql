@@ -56,9 +56,9 @@ CREATE TABLE tabla_aux AS
     JOIN tbl1 ON tbl0.c1 = tbl1.c1; 
 
 DROP TABLE IF EXISTS resultado;
-CREATE TABLE result AS 
+CREATE TABLE resultado AS 
     SELECT llave,
-           letter, 
+           letra, 
            key, 
            value 
     FROM tabla_aux 
@@ -69,7 +69,7 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 MAP KEYS TERMINATED BY '#'
 
 SELECT llave,
-       letter, 
+       letra, 
        value 
 FROM resultado
 WHERE key = letra;
