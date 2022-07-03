@@ -44,3 +44,16 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
 /*
     >>> Escriba su respuesta a partir de este punto <<<
 */
+DROP TABLE IF EXISTS resultado;
+CREATE TABLE resultado
+    AS 
+        SELECT DISTINCT a.split
+        FROM (
+            SELECT explode(c5) AS split 
+            FROM tbl0
+        ) AS a;
+
+INSERT OVERWRITE DIRECTORY 'output'
+
+SELECT * 
+FROM resultado;
