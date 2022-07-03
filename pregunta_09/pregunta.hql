@@ -46,3 +46,30 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
     >>> Escriba su respuesta a partir de este punto <<<
 */
 
+DROP TABLE IF EXISTS tabla_aux;
+
+CREATE TABLE tabla_aux AS 
+    SELECT tbl0.c1 as llave, 
+           tbl0.c2 as letra,
+           tbl1.c4 as map 
+    FROM tbl0 
+    JOIN tbl1 ON tbl0.c1 = tbl1.c1; 
+
+DROP TABLE IF EXISTS resultado;
+CREATE TABLE result AS 
+    SELECT llave,
+           letter, 
+           key, 
+           value 
+    FROM tabla_aux 
+    LATERAL VIEW explode(map) exploded AS key, value; 
+
+INSERT OVERWRITE LOCAL DIRECTORY 'output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+MAP KEYS TERMINATED BY '#'
+
+SELECT llave,
+       letter, 
+       value 
+FROM resultado
+WHERE key = letra;
