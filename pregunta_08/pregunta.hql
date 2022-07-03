@@ -46,19 +46,21 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
 /*
     >>> Escriba su respuesta a partir de este punto <<<
 */
+
 DROP TABLE IF EXISTS resultado;
 
-CREATE TABLE resultado AS 
-    SELECT c2,
-           key, 
-           value 
-    FROM tbl0 
-    LATERAL VIEW explode(c6) map;
+CREATE TABLE resulta AS
+    SELECT c2, 
+           key,
+           value
+    FROM tbl0
+    LATERAL VIEW explode(c6) mapped;
 
 INSERT OVERWRITE LOCAL DIRECTORY 'output'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 
-SELECT c2, 
-      sum(value) 
+SELECT c2,
+       sum(value) 
 FROM resultado
-GROUP BY c2;
+GROUP BY c2
+ORDER BY c2;
