@@ -49,7 +49,9 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
 DROP TABLE IF EXISTS resultado;
 
 CREATE TABLE resultado AS 
-    SELECT c2, clave, value 
+    SELECT c2,
+           key, 
+           value 
     FROM tbl0 
     LATERAL VIEW explode(c6) map;
 
